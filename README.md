@@ -4,7 +4,7 @@ How To run Dev mode? <br/>
 Build<br />
 ```ignite scaffold chain build```
 Define Messages <br />
-```ignite scaffold message storeData data:string owner:string```
+```ignite scaffold message storeData data:string owner:string```<br />
 ```ignite scaffold message retrieveData id:uint```
 ### Send Transactions
 ## Send a transaction to store data:<be />
