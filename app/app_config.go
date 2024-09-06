@@ -54,8 +54,11 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 
 	sboxmodulev1 "SBox/api/sbox/sbox/module"
+	storagemodulev1 "SBox/api/sbox/storage/module"
 	_ "SBox/x/sbox/module" // import for side-effects
 	sboxmoduletypes "SBox/x/sbox/types"
+	_ "SBox/x/storage/module" // import for side-effects
+	storagemoduletypes "SBox/x/storage/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -94,6 +97,7 @@ var (
 		circuittypes.ModuleName,
 		// chain modules
 		sboxmoduletypes.ModuleName,
+		storagemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,6 +123,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		sboxmoduletypes.ModuleName,
+		storagemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,6 +143,7 @@ var (
 		ibcfeetypes.ModuleName,
 		// chain modules
 		sboxmoduletypes.ModuleName,
+		storagemoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -158,6 +164,7 @@ var (
 		{Account: ibctransfertypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner}},
 		{Account: ibcfeetypes.ModuleName},
 		{Account: icatypes.ModuleName},
+		{Account: storagemoduletypes.ModuleName, Permissions: []string{authtypes.Minter, authtypes.Burner, authtypes.Staking}},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 
@@ -296,6 +303,10 @@ var (
 			{
 				Name:   sboxmoduletypes.ModuleName,
 				Config: appconfig.WrapAny(&sboxmodulev1.Module{}),
+			},
+			{
+				Name:   storagemoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&storagemodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},
